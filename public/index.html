@@ -12,7 +12,18 @@
       <div v-if="loading">
           <p>Loading...</p>
         </div>
-        <div v-else>
+        <div class = "center" v-else>
+          <p><b>Search Pokemon by Pokedex Number (1-807)</b></p>
+            <form v-on:submit.prevent="setPokemon">
+            <input type="text" v-model="pokedexNumber" class = "center">
+            <button type="submit" class = "center">Search</button>
+            </form>
+            <p><b>OR</b></p>
+            <p><b>Search Pokemon by Pokemon name (lowercase)</b></p>
+              <form v-on:submit.prevent="findPokedexNumber">
+              <input type="text" v-model="pokemonName" class = "center">
+              <button type="submit" class = "center">Search</button>
+              </form>
           <p>
           <button v-on:click="firstPokemon">First</button>
           <button v-on:click="previousPokemon">Previous</button>
@@ -21,17 +32,17 @@
           <button v-on:click="randomPokemon">Random</button>
         </p>
           <h2>{{current.name}}</h2>
-          <img v-bind:src="current.img" v-bind:alt="current.alt">
-          <p>Primary Type: {{current.typesList}}</p>
-          <p><i>Pokedex Index #{{current.id}}</i></p>
+          <img v-bind:src="image" v-bind:alt="current.alt" idth = "80" heigth = "80" class = "center">
+          <p>Height: {{current.height}} inches   Weight: {{current.weight}}g</p>
+          <p><i>Pokedex Index # {{current.id}}</i></p>
           <star-rating class="center" v-bind:increment="0.5" active-color="#ddcc00" @rating-selected ="setRating"></star-rating>
           <p>Average Fan Rating: {{average}}</p>
-        <h3>Add a Comment</h3>
+        <h3>What do you think of this Pokemon?</h3>
         <form v-on:submit.prevent="addComment">
-          <input v-model="addedName" placeholder="Name"></p>
-          <textarea v-model="addedComment"></textarea>
+          <input v-model="addedName" placeholder="Your Name"></p>
+          <textarea v-model="addedComment" placeholder="Leave Comment Here"></textarea>
           <br />
-          <button type="submit">Comment</button>
+          <button type="submit">Submit</button>
         </form>
         <h3>Comments</h3>
         <div v-for="comment in comments[number]">
@@ -56,6 +67,6 @@
 
   <footer class = "center">
     <p> By Daniel Scott for CS 260 Spring 2019</p>
-    <a href = "https://github.com/jdscott95/creative-project-2/tree/master/public" class = "center"> Github repository</a>
+    <a href = "https://github.com/jdscott95/creative-project-3" class = "center"> Github repository</a>
   </footer>
 </html>
